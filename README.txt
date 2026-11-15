@@ -1,6 +1,11 @@
-Dry River - an interactive WebXR art piece (three.js + Satie spatial sound)
+Persephonic - Dry River
+An interactive WebXR art piece (three.js + Satie spatial sound), made at Immerse the Bay 2026.
 
-Live version: https://sprightly-narwhal-7058c1.netlify.app
+Audio and sound design: Satie AI by Attractor Labs. The sounds of the river, the meadow,
+the house and its fire were described in Satie, generated and placed in 3D by it, and are
+played through the Satie runtime, tied to the state of the world.
+
+Live version: https://persephonic.netlify.app
 Open it on a Meta Quest in the Meta Quest Browser and press "Enter VR"
 (hand tracking on). On a computer: click the riverbed, drag to look, walk with W A S D.
 
