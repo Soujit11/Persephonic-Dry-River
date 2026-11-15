@@ -1,0 +1,110 @@
+{
+  "name": "satie-runtime",
+  "version": "0.4.8",
+  "description": "Satie spatial audio runtime: parse .satie scripts, schedule and spatialize voices over Web Audio, bind voices to your engine's objects, export ADM BWF / USDZ / binaural masters",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "LICENSE.md",
+    "vite-plugin.js",
+    "vite-plugin.d.ts",
+    "edits.js",
+    "EDITS.md",
+    "three.js",
+    "three.d.ts",
+    "react.js",
+    "react.d.ts",
+    "rebind.js",
+    "now.js",
+    "watch-tasks.js",
+    "locate.js",
+    "mixer.js",
+    "capture.js",
+    "CAPTURE.md"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./integration": {
+      "types": "./dist/integration/SceneRuntime.d.ts",
+      "import": "./dist/integration/SceneRuntime.js"
+    },
+    "./contracts": {
+      "types": "./dist/integration/contracts.d.ts",
+      "import": "./dist/integration/contracts.js"
+    },
+    "./three": {
+      "types": "./three.d.ts",
+      "import": "./three.js"
+    },
+    "./react": {
+      "types": "./react.d.ts",
+      "import": "./react.js"
+    },
+    "./devtools": {
+      "types": "./dist/devtools/index.d.ts",
+      "import": "./dist/devtools/index.js"
+    },
+    "./badge": {
+      "types": "./dist/badge/index.d.ts",
+      "import": "./dist/badge/index.js"
+    },
+    "./vite": {
+      "types": "./vite-plugin.d.ts",
+      "import": "./vite-plugin.js"
+    },
+    "./capture": {
+      "import": "./capture.js"
+    }
+  },
+  "keywords": [
+    "web-audio",
+    "spatial-audio",
+    "ambisonics",
+    "dolby-atmos",
+    "usdz",
+    "three",
+    "webxr"
+  ],
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Attractor-Laboratories/SATIE.git",
+    "directory": "packages/satie-runtime"
+  },
+  "peerDependencies": {
+    "vite": ">=5",
+    "three": ">=0.183.0",
+    "react": ">=19",
+    "@react-three/fiber": ">=9"
+  },
+  "peerDependenciesMeta": {
+    "three": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "@react-three/fiber": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    }
+  },
+  "bin": {
+    "satie-runtime": "rebind.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://www.satie.world/developers",
+  "dependencies": {
+    "@csound/browser": "7.0.0-beta36"
+  }
+}

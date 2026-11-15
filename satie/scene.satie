@@ -1,0 +1,481 @@
+# A quiet, contemplative VR art piece about bringing a dry: the developer's layout, as fixtures
+world A quiet, contemplative VR art piece about bringing a dry
+  seed 1
+  size 20
+  terrain relief 0 roughness 0
+  ground dirt weight 1
+  ground mud weight 0.5
+  ground stone weight 0.5
+  ground water weight 0.5
+  ground wood weight 0.5
+  ground other:clay_tile weight 0.5
+  ground metal weight 0.5
+  ground glass weight 0.5
+  ground grass weight 0.5
+  fixture river river size 28x13.65x28 material water over stones and cracked mud at 0,-1.9
+  fixture house stone cottage size 2.6x2.7x2.2 material rough stone walls, wooden beams, clay roof tiles at -3.4,1
+  fixture chimney chimney size 0.6x3.2x0.6 material stone at -3.95,2.04
+  fixture meadow flower meadow size 18x9.3x18 material unknown at 0,-1.9
+  fixture reeds reeds size 24x12.5x24 material dry reeds that turn green when wet porous 1 at 0,-1.9
+  fixture distant_pine pine tree size 3x8x3 material wood porous 1 at 24,-38
+  weather rain 0 wind 0.4 fog 0
+  time 12:30 season summer temp 18
+
+gen warm_grass_breeze
+    prompt light breeze brushing dry meadow grass, gentle irregular grass rustling, close dry field recording, no animals or voices, seamless ambience loop, consistent texture
+    duration 30
+    loopable
+
+gen dry_reed_ticks
+    prompt dry reed stems lightly touching in a light breeze, delicate irregular woody ticks separated by pauses, close dry recording, no insects or water, seamless ambience loop, consistent texture
+    duration 30
+    loopable
+
+gen meadow_insects
+    prompt summer grass insects making intermittent delicate stridulating pulses with natural pauses, close dry field recording, no birds or voices, seamless ambience loop, consistent texture
+    duration 30
+    loopable
+
+2 * loop warm_grass_breeze
+    source_id valley_breeze
+    source_role ambience
+    bed
+    move static
+    spl 32
+    visual none
+    randomstart
+
+loop dry_reed_ticks
+    source_id dry_reeds
+    source_role ambience
+    radius 12
+    at reeds
+    spl 36
+    volume follow wetness 0to1 1to0.12
+    distance_model free_field_v1
+    visual sphere
+
+loop gentle-shallow-brook-flowing
+    source_id restored_river
+    source_role ambience
+    line
+    radius 1.15
+    at river
+    spl 64
+    volume follow river_flow 0to1 0to1
+    distance_model free_field_v1
+    visual sphere
+
+loop meadow_insects
+    source_id returning_insects
+    source_role ambience
+    radius 9
+    at meadow
+    spl 35
+    volume follow bloom 0.12to0.75 0to1
+    distance_model free_field_v1
+    visual sphere
+
+entity meadow_bee
+    at meadow
+    count 1
+    body {"parts":[{"shape":"ellipsoid","size":[0.016,0.012,0.026],"at":[0,0.015,0]}]}
+    dwell 8to22
+    relocate 0.4to1.8
+    move fly
+    speed 0.25to0.65
+    call 0.35
+    callers 1
+    gap 10to24
+    voices 1
+
+        loop gen single honeybee wing buzz while hovering and feeding, small natural fluctuations, close dry recording, seamless ambience loop
+            source_id meadow_bee_wings
+            spl 39
+            volume follow bloom 0.03to0.3 0to1
+            distance_model free_field_v1
+            visual trail
+endentity
+
+entity reed_bird
+    at reeds
+    count 1
+    body {"parts":[{"shape":"ellipsoid","size":[0.07,0.09,0.15],"at":[0,0.08,0]},{"shape":"ellipsoid","size":[0.055,0.055,0.06],"at":[0,0.135,0.045]}]}
+    dwell 80to180
+    relocate 1to4
+    move fly
+    speed 2to4
+    call 0.3
+    callers 1
+    gap 10to24
+    voices 1
+
+        oneshot forest-bird-call-2 every 14to32
+            source_id reed_bird_song
+            spl 65
+            volume follow bloom 0.35to0.8 0to1
+            distance_model free_field_v1
+            visual sphere
+endentity
+
+loop fireplace-fire-crackling
+    source_id cottage_hearth
+    source_role ambience
+    radius 0.6
+    at house inside
+    spl 57
+    volume follow house_progress 0.999to1 0to1
+    distance_model free_field_v1
+    occlusion 0.45
+    visual sphere
+
+loop wood-smoke-curling-hissing
+    source_id chimney_draft
+    source_role ambience
+    radius 0.3
+    at chimney
+    spl 36
+    volume follow house_progress 0.999to1 0to1
+    distance_model free_field_v1
+    visual sphere
+
+on river_source gen small release of water welling up between pebbles, rounded bubbling followed by a brief gentle trickle, close dry recording
+    source_id river_awakening
+    radius 0.3
+    spl 55
+    cooldown 2
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on spring_open gen small natural spring opening in soil, gentle bubbling water continuing for seven seconds then subsiding, close dry recording
+    source_id touch_spring
+    radius 0.35
+    spl 53
+    duration 7
+    cooldown 1.5
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on drip_land gen single small water drop landing on {text}, delicate short contact, close dry recording
+    source_id fingertip_drop
+    spl 43
+    volume follow water_in_air 0to1 0.45to1
+    cooldown 0.28
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on flower_bloom gen single flower opening its folded petals, brief delicate leaf and petal unfurling rustle, close dry recording, no chime or musical tone
+    source_id flower_opening
+    spl 32
+    cooldown 0.8
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on piece_lift gen single {text} building piece lifting free from dry sandy soil, short gentle dusty scrape with loose grains falling away, close dry recording
+    source_id cottage_piece_lift
+    spl 50
+    cooldown 0.18
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on piece_land gen single {text} building piece settling carefully into a fitted joint, small rounded click or knock with a short natural decay, restrained placement without breaking or slamming, close dry recording
+    source_id cottage_piece_settle
+    spl 60
+    cooldown 0.16
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on house_complete gen wooden cottage frame settling once under its completed roof, gentle warm timber creak with a short release, close dry recording
+    source_id cottage_completion
+    radius 1.3
+    at house
+    spl 58
+    cooldown 12
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on step gen single unhurried footstep on {text}, close dry recording
+    source_id visitor_step
+    spl 63
+    cooldown 0.13
+    distance_model free_field_v1
+    variants 2
+    visual none
+
+soundscape river_meadow
+  label River meadow
+  share open summer meadow around a shallow riverbed and a ruined stone cottage
+  kind open
+  objects river house chimney meadow reeds distant_pine
+  why One continuous outdoor listening space: banks, shallow bed, flowers and cottage approaches introduce no abrupt change. No accessible enclosed cottage interior is specified.
+
+soundscape everywhere
+  kind world
+
+entity distant_tree_bird
+    at distant_pine top
+    count 1
+    body {"parts":[{"shape":"ellipsoid","size":[0.07,0.09,0.15],"at":[0,0.08,0]},{"shape":"ellipsoid","size":[0.055,0.055,0.06],"at":[0,0.135,0.045]}]}
+    call 0.4
+    callers 1
+    gap 14to30
+    voices 1
+
+        oneshot forest-bird-call-2 every 18to38
+            source_id distant_tree_bird_song
+            spl 66
+            volume follow bloom 0.5to1 0to1
+            distance_model free_field_v1
+            visual sphere
+endentity
+
+# ---- inside the cottage: every touch has a real sound ----
+on door_open gen a heavy old wooden door being pushed open slowly while its hinges creak loudly, close dry recording
+    source_id door_open_sound
+    spl 60
+    duration 4
+    cooldown 1
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on door_close gen old wooden cottage door creaking shut on rusty hinges then closing with a solid wooden thud, close dry recording
+    source_id door_close_sound
+    spl 62
+    duration 3
+    cooldown 1
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on match_light gen a wooden match struck on a matchbox and catching flame with a small soft whoosh, close dry recording
+    source_id match_light_sound
+    spl 52
+    duration 2
+    cooldown 0.4
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on fire_light gen dry kindling catching fire in a stone hearth, crackling and a rising soft whoosh of flames, close dry recording
+    source_id fire_light_sound
+    spl 60
+    duration 4
+    cooldown 2
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on log_drop gen a split log set onto a burning fire in a stone hearth, a wooden thud followed by a burst of crackling, close dry recording
+    source_id log_drop_sound
+    spl 62
+    duration 3
+    cooldown 0.8
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on candle_out gen gently blowing out a candle flame, one soft breath, close dry recording
+    source_id candle_out_sound
+    spl 42
+    duration 1
+    cooldown 0.4
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on kettle_clank gen a cast iron kettle swinging and clanking on its iron hook, close dry recording
+    source_id kettle_clank_sound
+    spl 55
+    duration 1.5
+    cooldown 0.6
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on kettle_whistle gen an old kettle on a fire coming to the boil and whistling steadily, close dry recording
+    source_id kettle_whistle_sound
+    spl 56
+    duration 8
+    cooldown 6
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on tea_pour gen hot tea poured from a kettle into a porcelain teacup, close dry recording
+    source_id tea_pour_sound
+    spl 50
+    duration 3
+    cooldown 2
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on tea_sip gen a gentle sip of hot tea from a porcelain cup, the cup set back on its saucer, close dry recording
+    source_id tea_sip_sound
+    spl 45
+    duration 2
+    cooldown 0.8
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on clock_chime gen a single strike of a small brass mantel clock bell, close dry recording
+    source_id clock_chime_sound
+    spl 55
+    duration 2.5
+    cooldown 0.3
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on cat_purr gen a domestic cat purring contentedly, very close, close dry recording
+    source_id cat_purr_sound
+    spl 45
+    duration 6
+    cooldown 5
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on cushion_pat gen a hand patting a soft velvet cushion, close dry recording
+    source_id cushion_pat_sound
+    spl 45
+    duration 1
+    cooldown 0.4
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on book_take gen a hardcover book slid off a wooden shelf and opened, a few pages turning, close dry recording
+    source_id book_take_sound
+    spl 48
+    duration 2
+    cooldown 0.6
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on book_return gen a hardcover book pushed back into a tight row of books on a wooden shelf, soft paper slide and a gentle wooden thump, close dry recording
+    source_id book_return_sound
+    spl 54
+    duration 1.5
+    cooldown 0.6
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on curtain_slide gen a heavy fabric curtain drawn along a brass rod, rings sliding, close dry recording
+    source_id curtain_slide_sound
+    spl 52
+    duration 2
+    cooldown 0.8
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on lamp_chain gen the pull chain switch of an old hanging lamp clicking, close dry recording
+    source_id lamp_chain_sound
+    spl 50
+    duration 1
+    cooldown 0.4
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on plant_rustle gen leaves of a hanging houseplant rustling as a hand brushes them, close dry recording
+    source_id plant_rustle_sound
+    spl 42
+    duration 1.5
+    cooldown 0.6
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on glass_tap gen a fingertip tapping a round glass fishbowl full of water, soft ringing tap, close dry recording
+    source_id glass_tap_sound
+    spl 46
+    duration 1.5
+    cooldown 0.4
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on fish_food gen shaking fish food flakes from a small tin onto water, close dry recording
+    source_id fish_food_sound
+    spl 44
+    duration 1.5
+    cooldown 0.6
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on fish_eat gen a tiny goldfish gulping a flake at the water surface, a small bubble pop, close dry recording
+    source_id fish_eat_sound
+    spl 36
+    duration 0.8
+    cooldown 0.3
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on window_wipe gen a cotton cloth wiping a dirty window pane, short squeaks on glass, close dry recording
+    source_id window_wipe_sound
+    spl 48
+    duration 1.5
+    cooldown 0.5
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on cloth_pick gen picking up a soft cotton cloth from an iron hook, close dry recording
+    source_id cloth_pick_sound
+    spl 40
+    duration 1
+    cooldown 0.5
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on sofa_sit gen sitting down on an old sofa, springs and fabric creaking, close dry recording
+    source_id sofa_sit_sound
+    spl 52
+    duration 2
+    cooldown 0.8
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on sofa_stand gen getting up from an old sofa, springs creaking, close dry recording
+    source_id sofa_stand_sound
+    spl 50
+    duration 1.5
+    cooldown 0.8
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on needle_drop gen a gramophone needle lowered onto a shellac record, a soft thump then crackle, close dry recording
+    source_id needle_drop_sound
+    spl 46
+    duration 2.5
+    cooldown 1
+    distance_model free_field_v1
+    variants 2
+    visual sphere
+
+on cat_meow gen a domestic cat giving one soft short friendly meow, close dry recording
+    source_id cat_meow_sound
+    spl 62
+    duration 1.5
+    cooldown 1
+    distance_model free_field_v1
+    variants 2
+    visual sphere

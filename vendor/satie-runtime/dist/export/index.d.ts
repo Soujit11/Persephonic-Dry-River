@@ -1,0 +1,28 @@
+export { renderOffline, renderObjectStems, prepareRenderManifest, shouldSimulate, sampleVoiceExtent, decodeAllBuffers, type RenderMode, type RenderOptions, type RenderProgress, type ManifestPrepOptions, type ObjectStemOptions, type VoiceExtent } from './OfflineRenderer.js';
+export { buildRenderManifest, buildTraceManifest, resolveRenderRooms, roomForVoice, type RenderManifest, type RenderedVoice, type RenderRooms, type VoiceRoom, } from './RenderManifest.js';
+export { positionAt, sampleVoicePositionTimeline, toPlaybackFrame, isStaticVoice, isStaticMotion, traceValueAt, type ScenePosition, type TimelinePoint, type VoiceMotion, type VoiceTrace, } from './VoicePositions.js';
+export { simulateScene, needsSimulation, takeClipPath, SIMULATION_DEFAULT_FPS, type SceneTrace, type TraceSource, type TraceMark, type TraceEvent, type SimulateOptions, type WorldRoom, type SceneStateOptions, } from './SceneSimulation.js';
+export { LISTENER_EAR_HEIGHT_M, DEFAULT_LISTENER_POSE, ENVELOPING, listenerPoseAt, toListenerFrame, rotateToListenerFrame, pathDuration, walkPath, type ListenerKeyframe, type ListenerPose, } from './ListenerPath.js';
+export { NullAudioContext, NullAudioBuffer, installNullAudioGlobals } from './NullAudioContext.js';
+export { encodeWAV, downloadBlob, type WavOptions } from './WAVEncoder.js';
+export { SATIE_WATERMARK, SATIE_ATTRIBUTION, SATIE_SOFTWARE, SATIE_URL } from './Attribution.js';
+export { computeFOAGains, computeHOAGains, acnOrder, ambisonicChannelCount, distanceAttenuation, type AmbisonicGains, type AmbisonicOrder, } from './AmbisonicEncoder.js';
+export { SPEAKER_LAYOUTS, speakerGains, wideBusFanout, diffuseFanout, type Speaker, } from './SpeakerLayouts.js';
+export { renderAdmBwf, type AdmExportOptions, type AdmExportResult, ATMOS_MAX_OBJECTS } from './adm/AdmExporter.js';
+export { exportUSDZ, type USDZExportOptions, type USDZExportResult } from './USDZExporter.js';
+export { exportIamf, buildIamfSequence, toStandaloneIamf, iamfLayout, isIamfRenderMode, IAMF_RENDER_MODES, IAMF_SAMPLE_RATE, IAMF_FRAME_SAMPLES, type IamfExportOptions, type IamfExportResult, type IamfRenderMode, type IamfSequence, type IamfLoudness, } from './iamf/IamfExporter.js';
+export { exportUnityBundle, buildUnityScene, unityPathFor, toUnityPosition, unityReadme, UNITY_BUNDLE_FORMAT, UNITY_PATH_FPS, SATIE_SCENE_CS, type UnityBundleOptions, type UnityBundleResult, type UnitySceneFile, type UnityVoice, type UnityPathPoint, type UnityVec3, } from './UnityBundle.js';
+export { buildSeldAnnotations, seldToCsv, seldClassMapJson, scenePositionToPolar, voiceLabel, SELD_DEFAULT_FPS, type SeldAnnotations, type SeldFrameEvent, type SeldOptions, } from './SeldAnnotations.js';
+export { clipActivityFromSamples, clipAudibleAt, clipActivityForBuffers, resolveClipActivity, CLIP_ACTIVITY_HOP_S, CLIP_ACTIVITY_THRESHOLD_DB, type ClipActivity, } from './ClipActivity.js';
+export { buildStairs26, stairs26Json, polarToPixel, angularRadiusDeg, type Stairs26File, type Stairs26Annotation, type Stairs26Options, } from './Stairs26Annotations.js';
+export { buildSceneGraph, sceneGraphJson, velocityAt, sceneFrameOf, SCENE_GRAPH_FORMAT, TRACE_RESAMPLED, type SceneGraphFile, type SceneGraphFrame, type SceneGraphFrameSource, type SceneGraphSource, type SceneGraphOptions, type SceneGraphAsset, type SceneGraphListener, type AudibleBasis, type EmissionBasis, type FieldBasis, type SceneCoordinateFrame, } from './SceneGraphFrames.js';
+export { measureStemLevels, STEM_LEVEL_FLOOR_DBFS, type MeasuredStemLevels } from './StemLevels.js';
+export { renderMicArrayCapture, renderMicArray, mixStemsToCapsules, type MicArrayRenderOptions, type MicArrayExportOptions, } from './MicArrayRender.js';
+export { tetrahedralArray, eigenmikeSubsetArray, dcaseMicArray, circularArray, micArrayGeometryFor, capsuleNormal, captureAt, tdoa, maxTdoaS, SPEED_OF_SOUND, type MicArrayGeometry, type MicArrayBaffle, type MicArrayChoice, type Capsule, type CapsuleSignal, } from './MicArray.js';
+export { rigidSphereResponse, modalOrderFor, buildSphereFirTable, sphereFirTable, sphereFirAt, sphericalJ, sphericalY, hankel2Deriv, type SphereFirTable, type SphereFirOptions, type ModalTruncation, type Complex, } from './RigidSphere.js';
+export { planBatch, surfacesForVariant, batchManifestJson, type BatchVariant, type BatchOptions, } from './BatchRender.js';
+export { renderScriptMics, planMicRender, micListenerPath, micArrayGeometry, type MicRenderPlan, type MicRenderResult, type ScriptMicRenderOptions, } from './SceneMics.js';
+export { probeFOA, probeImpulseResponse, compareDirection, angularError, type AudioProbeFrame } from './AudioProbe.js';
+export { referenceScene, type ReferenceSetup, type ReferenceAsset } from './ReferenceScene.js';
+export { buildContactLabels, contactLabelsJson, parseContactLabel, CONTACT_LABELS_FORMAT, type ContactLabels, type ContactRow } from './ContactLabels.js';
+//# sourceMappingURL=index.d.ts.map
