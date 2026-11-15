@@ -53,3 +53,8 @@ Emulator trial
   https://sprightly-narwhal-7058c1.netlify.app/?vrtest) on a computer.
   Meta's IWER emulator stands in for a Quest and vrtest.js plays through
   the experience, listing each check on screen. Without ?vrtest nothing loads.
+
+License
+  The project's own code is MIT licensed (see LICENSE). The Satie Runtime in
+  vendor/satie-runtime is Attractor Labs' proprietary software, included unmodified
+  under its own license, and the Satie audio scene follows Satie's terms.
