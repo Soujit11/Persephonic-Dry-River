@@ -1,0 +1,12 @@
+Persephonic - Dry River: third-party notices
+
+The MIT License in LICENSE covers this project's own code only. These components
+are not covered by it:
+
+vendor/satie-runtime/  The Satie Runtime, Copyright (c) 2026 Attractor Labs.
+                       Proprietary; included unmodified as part of this work
+                       under its own license, vendor/satie-runtime/LICENSE.md.
+satie/                 The audio scene and the sounds it plays were produced
+                       with Satie AI by Attractor Labs and are governed by the
+                       Satie account terms and the licenses on each recording.
+three.js               Loaded from a CDN at runtime; MIT License, three.js authors.

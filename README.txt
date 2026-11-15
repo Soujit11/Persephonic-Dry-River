@@ -57,4 +57,4 @@ Emulator trial
 License
   The project's own code is MIT licensed (see LICENSE). The Satie Runtime in
   vendor/satie-runtime is Attractor Labs' proprietary software, included unmodified
-  under its own license, and the Satie audio scene follows Satie's terms.
+  under its own license, and the Satie audio scene follows Satie's terms. See NOTICE.
